@@ -55,14 +55,15 @@
   };
 </script>
 
-  <meta name="description" content="Young and brilliant.">
+  <meta name="description" content="前言Github上有许多精致且实用的主题模板，详情可参考 https:&#x2F;&#x2F;www.zhihu.com&#x2F;question&#x2F;39388850  其中，NexT是使用非常广泛的一个主题，也是本博客使用的主题。 本文简单介绍了NexT的启用与美化方法。">
+<meta name="keywords" content="Hexo,博客,NexT">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo-Blog-NexT-Theme-Config">
+<meta property="og:title" content="Hexo博客的NexT主题设置">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;18&#x2F;Hexo-Blog-NexT-Theme-Config&#x2F;index.html">
 <meta property="og:site_name" content="Yanhui Wang">
-<meta property="og:description" content="Young and brilliant.">
+<meta property="og:description" content="前言Github上有许多精致且实用的主题模板，详情可参考 https:&#x2F;&#x2F;www.zhihu.com&#x2F;question&#x2F;39388850  其中，NexT是使用非常广泛的一个主题，也是本博客使用的主题。 本文简单介绍了NexT的启用与美化方法。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-18T05:40:36.340Z">
+<meta property="og:updated_time" content="2019-10-18T15:36:33.449Z">
 <meta name="twitter:card" content="summary">
   <link rel="canonical" href="http://yoursite.com/2019/10/18/Hexo-Blog-NexT-Theme-Config/">
 
@@ -78,7 +79,7 @@
   };
 </script>
 
-  <title>Hexo-Blog-NexT-Theme-Config | Yanhui Wang</title>
+  <title>Hexo博客的NexT主题设置 | Yanhui Wang</title>
   
 
 
@@ -235,7 +236,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            Hexo-Blog-NexT-Theme-Config
+            Hexo博客的NexT主题设置
             
 
           
@@ -252,7 +253,28 @@
                 
               
 
-              <time title="Created: 2019-10-18 13:40:36" itemprop="dateCreated datePublished" datetime="2019-10-18T13:40:36+08:00">2019-10-18</time>
+              <time title="Created: 2019-10-18 13:40:36 / Modified: 23:36:33" itemprop="dateCreated datePublished" datetime="2019-10-18T13:40:36+08:00">2019-10-18</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B0%8F%E7%99%BD%E6%95%99%E7%A8%8B/" itemprop="url" rel="index">
+                    <span itemprop="name">小白教程</span>
+                  </a>
+                </span>
+
+                
+                
+              
             </span>
           
 
@@ -275,7 +297,190 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Github上有许多精致且实用的主题模板，详情可参考 <a href="https://www.zhihu.com/question/39388850" target="_blank" rel="noopener">https://www.zhihu.com/question/39388850</a> </p>
+<p>其中，NexT是使用非常广泛的一个主题，也是本博客使用的主题。</p>
+<p>本文简单介绍了NexT的启用与美化方法。</p>
+<a id="more"></a>
+
+<h1 id="主题下载与启用"><a href="#主题下载与启用" class="headerlink" title="主题下载与启用"></a>主题下载与启用</h1><p>进入博客根目录，右击Git Bash Here，下载主题代码。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/iissnan/hexo-theme-next.git themes/next</span><br></pre></td></tr></table></figure>
+
+<p> 打开根目录下的<code>_config.yml</code>文件，将 theme 修改为 next 。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theme: next</span><br></pre></td></tr></table></figure>
+
+<p>运行以下命令启用主题</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br><span class="line"></span><br><span class="line">hexo g</span><br><span class="line"></span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意</strong></p>
+<ul>
+<li>yml格式要求：设置时，冒号后面都需要一个空格。</li>
+<li>修改 站点配置文件 需求重启服务器才能生效，修改 主题配置文件 不需要重启服务器。重启步骤为在服务器启动控制台 <code>ctrl + c</code>，然后 <code>$ hexo server [--debug]</code> </li>
+</ul>
+<h1 id="主题美化"><a href="#主题美化" class="headerlink" title="主题美化"></a>主题美化</h1><p>打开 <code>themes\next</code>文件夹中的<code>_config.yml</code>文件进行设置。若选择其他主题，设置相应主题的<code>_config.yml</code>文件即可。</p>
+<h2 id="外观-scheme"><a href="#外观-scheme" class="headerlink" title="外观 - scheme"></a>外观 - scheme</h2><ul>
+<li>Muse - 默认 Scheme，NexT 最初的版本，黑白主调，大量留白</li>
+<li>Mist - Muse 的紧凑版本，整洁有序的单栏外观</li>
+<li>Pisces - 双栏 Scheme，小家碧玉似的清新</li>
+<li>Gemini - 紧凑集中版双栏 Scheme，本网站采用的主题</li>
+</ul>
+<p>将选中的主题前的#去掉，其他加#。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># Schemes</span><br><span class="line">#scheme: Muse</span><br><span class="line">#scheme: Mist</span><br><span class="line">#scheme: Pisces</span><br><span class="line">scheme: Gemini</span><br></pre></td></tr></table></figure>
+
+<h2 id="语言-language"><a href="#语言-language" class="headerlink" title="语言 - language"></a>语言 - language</h2><p>编辑站点配置文件下的language，修改所有主题的语言。</p>
+<p>编辑某一主题配置文件下的language，修改当前主题的语言。</p>
+<p>NexT 语言支持：</p>
+<table>
+<thead>
+<tr>
+<th align="left">语言</th>
+<th align="left">代码</th>
+<th align="left">设定示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">English</td>
+<td align="left"><code>en</code></td>
+<td align="left"><code>language: en</code></td>
+</tr>
+<tr>
+<td align="left">简体中文</td>
+<td align="left"><code>zh-Hans</code></td>
+<td align="left"><code>language: zh-Hans</code></td>
+</tr>
+<tr>
+<td align="left">Français</td>
+<td align="left"><code>fr-FR</code></td>
+<td align="left"><code>language: fr-FR</code></td>
+</tr>
+<tr>
+<td align="left">Português</td>
+<td align="left"><code>pt</code></td>
+<td align="left"><code>language: pt</code> or <code>language: pt-BR</code></td>
+</tr>
+<tr>
+<td align="left">繁體中文</td>
+<td align="left"><code>zh-hk</code> 或者 <code>zh-tw</code></td>
+<td align="left"><code>language: zh-hk</code></td>
+</tr>
+<tr>
+<td align="left">Русский язык</td>
+<td align="left"><code>ru</code></td>
+<td align="left"><code>language: ru</code></td>
+</tr>
+<tr>
+<td align="left">Deutsch</td>
+<td align="left"><code>de</code></td>
+<td align="left"><code>language: de</code></td>
+</tr>
+<tr>
+<td align="left">日本語</td>
+<td align="left"><code>ja</code></td>
+<td align="left"><code>language: ja</code></td>
+</tr>
+<tr>
+<td align="left">Indonesian</td>
+<td align="left"><code>id</code></td>
+<td align="left"><code>language: id</code></td>
+</tr>
+<tr>
+<td align="left">Korean</td>
+<td align="left"><code>ko</code></td>
+<td align="left"><code>language: ko</code></td>
+</tr>
+</tbody></table>
+<p>例如选用简体中文，则配置如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">language: zh-Hans</span><br></pre></td></tr></table></figure>
+
+<h2 id="菜单-menu"><a href="#菜单-menu" class="headerlink" title="菜单 - menu"></a>菜单 - menu</h2><p>在menu字段下选择启用的菜单，也可以新增自定义的菜单。</p>
+<p>常用的菜单如下：</p>
+<table>
+<thead>
+<tr>
+<th align="left">键值</th>
+<th align="left">设定值</th>
+<th align="left">显示文本（简体中文）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">home</td>
+<td align="left">home: /</td>
+<td align="left">主页</td>
+</tr>
+<tr>
+<td align="left">archives</td>
+<td align="left">archives: /archives</td>
+<td align="left">归档页</td>
+</tr>
+<tr>
+<td align="left">categories</td>
+<td align="left">categories: /categories</td>
+<td align="left">分类页</td>
+</tr>
+<tr>
+<td align="left">tags</td>
+<td align="left">tags: /tags</td>
+<td align="left">标签页</td>
+</tr>
+<tr>
+<td align="left">schedule</td>
+<td align="left">schedule: /schedule</td>
+<td align="left">日程表</td>
+</tr>
+<tr>
+<td align="left">about</td>
+<td align="left">about: /about</td>
+<td align="left">关于</td>
+</tr>
+<tr>
+<td align="left">sitemap</td>
+<td align="left">sitemap: /sitemap</td>
+<td align="left">站点地图</td>
+</tr>
+<tr>
+<td align="left">commonweal</td>
+<td align="left">commonweal: /404.html</td>
+<td align="left">公益404</td>
+</tr>
+</tbody></table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">menu:</span><br><span class="line">  home: / || home</span><br><span class="line">  about: /about/ || user</span><br><span class="line">  tags: /tags/ || tags</span><br><span class="line">  categories: /categories/ || th</span><br><span class="line">  #archives: /archives/ || archive</span><br><span class="line">  #schedule: /schedule/ || calendar</span><br><span class="line">  #sitemap: /sitemap.xml || sitemap</span><br><span class="line">  #commonweal: /404/ || heartbeat</span><br></pre></td></tr></table></figure>
+
+<p>在主题目录的language文件夹中，修改相应的语言包的菜单显示文字。</p>
+<p>修改字段值直接影响页面上菜单文字显示，或者新增字段值，字段名要与上面第一步设置的自定义菜单名称对应。 </p>
+<p>例如简体中文的设置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">menu:  </span><br><span class="line">  home: 首页  </span><br><span class="line">  archives: 归档  </span><br><span class="line">  categories: 分类  </span><br><span class="line">  tags: 标签  </span><br><span class="line">  about: 关于</span><br></pre></td></tr></table></figure>
+
+<h2 id="侧栏-sidebar"><a href="#侧栏-sidebar" class="headerlink" title="侧栏 - sidebar"></a>侧栏 - sidebar</h2><p>修改<code>sidebar</code>字段下的<code>position</code>的值，设置侧栏的显示位置。目前仅 <code>Pisces scheme</code> 支持<code>position</code>配置。</p>
+<p><code>position</code>支持以下的选项：</p>
+<ul>
+<li><code>left</code> - 靠左放置</li>
+<li><code>right</code> - 靠右放置</li>
+</ul>
+<p>修改<code>sidebar</code>字段下的<code>display</code>的值，设置侧栏的显示时机。</p>
+<p><code>display</code>支持以下的选项：</p>
+<ul>
+<li><code>post</code> - 默认行为，在文章页面（拥有目录列表）时显示</li>
+<li><code>always</code> - 在所有页面中都显示</li>
+<li><code>hide</code> - 在所有页面中都隐藏（可以手动展开）</li>
+<li><code>remove</code> - 完全移除</li>
+</ul>
+<h2 id="头像-avatar"><a href="#头像-avatar" class="headerlink" title="头像 - avatar"></a>头像 - avatar</h2><p>将头像图片放在主题目录的<code>source/images</code>文件夹下，图片名称设为<code>avatar</code>。</p>
+<p>如果<code>_config.yml</code>没有<code>avatar</code>字段，则新增字段<code>avatar</code>。并设置 <code>url</code> 参数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">avatar: </span><br><span class="line"># In theme directory (source/images): /images/avatar.gif</span><br><span class="line"># In site directory (source/uploads): /uploads/avatar.gif</span><br><span class="line"># You can also use other linking images.</span><br><span class="line">url: /images/avatar.png</span><br><span class="line">If true, the avatar would be dispalyed in circle.</span><br><span class="line">rounded: false</span><br><span class="line">If true, the avatar would be rotated with the cursor.</span><br><span class="line">rotated: false</span><br></pre></td></tr></table></figure>
+
+<h2 id="社交-social"><a href="#社交-social" class="headerlink" title="社交 - social"></a>社交 - social</h2><p>修改social字段，设置显示文本： 链接地址 || 图标名称。</p>
+<p>示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">social:</span><br><span class="line">  GitHub: https://github.com/yanhuiw || github</span><br><span class="line">  E-Mail: mailto: your email || envelope</span><br><span class="line">  #Weibo: https://weibo.com/yourname || weibo</span><br><span class="line">  #Google: https://plus.google.com/yourname || google</span><br><span class="line">  #Twitter: https://twitter.com/yourname || twitter</span><br><span class="line">  #FB Page: https://www.facebook.com/yourname || facebook</span><br><span class="line">  #VK Group: https://vk.com/yourname || vk</span><br><span class="line">  #StackOverflow: https://stackoverflow.com/yourname || stack-overflow</span><br><span class="line">  #YouTube: https://youtube.com/yourname || youtube</span><br><span class="line">  #Instagram: https://instagram.com/yourname || instagram</span><br><span class="line">  #Skype: skype:yourname?call|chat || skype</span><br></pre></td></tr></table></figure>
+
+<h2 id="访客统计-busuanzi-count"><a href="#访客统计-busuanzi-count" class="headerlink" title="访客统计 - busuanzi_count"></a>访客统计 - busuanzi_count</h2><p>修改busuanzi_count字段，将enable设置成true。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">busuanzi_count:</span><br><span class="line">  enable: true</span><br><span class="line">  total_visitors: true #总访客数量，同个ip访问算1个访客</span><br><span class="line">  total_visitors_icon: user</span><br><span class="line">  total_views: true #总访问次数，同个ip可以有多次访问</span><br><span class="line">  total_views_icon: eye</span><br><span class="line">  post_views: true #每个页面的访问次数</span><br><span class="line">  post_views_icon: eye</span><br></pre></td></tr></table></figure>
+
+<h2 id="代码高亮-highlight"><a href="#代码高亮-highlight" class="headerlink" title="代码高亮 - highlight"></a>代码高亮 - highlight</h2><p>支持多款代码高亮风格，默认<code>normal</code>：</p>
+<p><code>normal | night | night eighties | night blue | night bright | solarized | solarized dark | galactic</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">codeblock:</span><br><span class="line">  highlight_theme: normal</span><br><span class="line">  # Add copy button on codeblock</span><br><span class="line">  copy_button:</span><br><span class="line">    enable: false</span><br><span class="line">    # Show text copy result.</span><br><span class="line">    show_result: false</span><br><span class="line">    # Available values: default | flat | mac</span><br><span class="line">    style:</span><br></pre></td></tr></table></figure>
+
+
+
+
     </div>
 
     
@@ -285,6 +490,19 @@
       
 
       <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+            
+              <a href="/tags/%E5%8D%9A%E5%AE%A2/" rel="tag"># 博客</a>
+            
+              <a href="/tags/NexT/" rel="tag"># NexT</a>
+            
+          </div>
+        
 
         
 
@@ -345,6 +563,8 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#主题下载与启用"><span class="nav-number">2.</span> <span class="nav-text">主题下载与启用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#主题美化"><span class="nav-number">3.</span> <span class="nav-text">主题美化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#外观-scheme"><span class="nav-number">3.1.</span> <span class="nav-text">外观 - scheme</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#语言-language"><span class="nav-number">3.2.</span> <span class="nav-text">语言 - language</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#菜单-menu"><span class="nav-number">3.3.</span> <span class="nav-text">菜单 - menu</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#侧栏-sidebar"><span class="nav-number">3.4.</span> <span class="nav-text">侧栏 - sidebar</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#头像-avatar"><span class="nav-number">3.5.</span> <span class="nav-text">头像 - avatar</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#社交-social"><span class="nav-number">3.6.</span> <span class="nav-text">社交 - social</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#访客统计-busuanzi-count"><span class="nav-number">3.7.</span> <span class="nav-text">访客统计 - busuanzi_count</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码高亮-highlight"><span class="nav-number">3.8.</span> <span class="nav-text">代码高亮 - highlight</span></a></li></ol></li></ol></div>
+        
       </div>
       <!--/noindex-->
 
@@ -388,7 +608,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">tags</span>
         </a>
       </div>
