@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.1">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.1" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.1">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.4.1',
+    exturl: false,
+    sidebar: {"position":"left","display":"always","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="Java 常用类装箱 &amp;amp; 拆箱箱装：编译器支持的包装。包装类型的比较必须使用equals()。包装类型提供了大量实用方法。 Java 核心库提供的包装类型可以把基本类型包装成类，也可以把类拆解成基本类型。两者都只发生在编译阶段，可以少写代码，但会影响代码的执行效率。  自动装箱：直接把基本类型变成引用类型的赋值写法。  自动拆箱：直接把引用类型变成基本类型的赋值写法。可能会出现null无法">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 常用类">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;29&#x2F;Java-class&#x2F;index.html">
+<meta property="og:site_name" content="Yanhui Wang">
+<meta property="og:description" content="Java 常用类装箱 &amp;amp; 拆箱箱装：编译器支持的包装。包装类型的比较必须使用equals()。包装类型提供了大量实用方法。 Java 核心库提供的包装类型可以把基本类型包装成类，也可以把类拆解成基本类型。两者都只发生在编译阶段，可以少写代码，但会影响代码的执行效率。  自动装箱：直接把基本类型变成引用类型的赋值写法。  自动拆箱：直接把引用类型变成基本类型的赋值写法。可能会出现null无法">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-10-31T04:29:52.837Z">
+<meta name="twitter:card" content="summary">
+  <link rel="canonical" href="http://yoursite.com/2019/10/29/Java-class/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Java 常用类 | Yanhui Wang</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Yanhui Wang</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+        
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+      
+    
+      
+      
+        
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+      
+    
+      
+      
+        
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+      
+    
+      
+      
+        
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+      
+    
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/29/Java-class/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yanhui Wang">
+      <meta itemprop="description" content="Young and brilliant.">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yanhui Wang">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            Java 常用类
+            
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2019-10-29 20:54:47" itemprop="dateCreated datePublished" datetime="2019-10-29T20:54:47+08:00">2019-10-29</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-10-31 12:29:52" itemprop="dateModified" datetime="2019-10-31T12:29:52+08:00">2019-10-31</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Java-常用类"><a href="#Java-常用类" class="headerlink" title="Java 常用类"></a>Java 常用类</h1><h2 id="装箱-amp-拆箱"><a href="#装箱-amp-拆箱" class="headerlink" title="装箱 &amp; 拆箱"></a>装箱 &amp; 拆箱</h2><p>箱装：编译器支持的包装。包装类型的比较必须使用equals()。包装类型提供了大量实用方法。</p>
+<p>Java 核心库提供的包装类型可以把基本类型包装成类，也可以把类拆解成基本类型。两者都只发生在编译阶段，可以少写代码，但会影响代码的执行效率。</p>
+<ul>
+<li><p>自动装箱：直接把基本类型变成引用类型的赋值写法。</p>
+</li>
+<li><p>自动拆箱：直接把引用类型变成基本类型的赋值写法。可能会出现null无法拆箱的异常。</p>
+</li>
+</ul>
+<a id="more"></a>
+
+<h2 id="Number"><a href="#Number" class="headerlink" title="Number"></a>Number</h2><ul>
+<li><p>byte，int，short，long，double，float分别对应Byte，Integer，Short，Long，Double，Float包装类。这些包装类都是抽象类Number的子类。</p>
+</li>
+<li><p>支持自动装箱和自动拆箱。</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Integer n=100;	//自动装箱</span><br><span class="line">int x=n;	//自动拆箱</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>创建引用对象：<ul>
+<li>创建新的实例：Integer n=new Integer(100);    </li>
+<li>静态工厂方法：Integer n=Integer.valueOf(100); 优先选用。具体实现可以跟随版本进行优化。尽可能地返回缓存的实例以节省内存。</li>
+</ul>
+</li>
+<li>使用equals进行等值比较</li>
+<li>常用方法</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">int x=Integer.parseInt(&quot;100&quot;,16);	//进制转换</span><br><span class="line">String s=Integer.toString(100);	//把整数格式化为指定进制的字符串</span><br><span class="line">int max=Integer.MAX_VALUE;	//常用的静态变量</span><br><span class="line">Number num=new Integer(100);	//使用Number包装</span><br><span class="line">int n=num.intValue();	//通过Number获取基本类型的值</span><br><span class="line">int y=Byte.toUnsignedInt(-1);	//处理无符号整型</span><br></pre></td></tr></table></figure>
+
+<h2 id="BigInteger"><a href="#BigInteger" class="headerlink" title="BigInteger"></a>BigInteger</h2><ul>
+<li><p>内部使用一个int[]数组模拟一个非常大的整数。没有范围限制，但速度较慢。</p>
+</li>
+<li><p>BigInteger是不变类，继承自Number。</p>
+</li>
+<li><p>对BigInteger做运算的时候，只能使用实例方法。</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">BigInteger bi1=new BigInteger(&quot;9876543210987&quot;);</span><br><span class="line">BigInteger bi2=bi1.add(bi1);</span><br><span class="line">BigInteger bi3=bi1.pow(2);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>可以把BigInteger转换成byte，short，int，long等基本类型，可以判断是否超出转换后类型的范围。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">BigInteger bi=new BigInteger(&quot;9876543210987&quot;);</span><br><span class="line">long l=bi.longValue();</span><br><span class="line">long le=bi.longValueExact();	//超出范围会抛出ArithmeticException</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>可以把BigInteger转换成float，double等基本类型，如果超出范围返回inf。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">BigInteger bi=new BigInteger(&quot;9876543210987&quot;);</span><br><span class="line">float f=bi.floatValue();</span><br></pre></td></tr></table></figure>
+
+<h2 id="BigDecimal"><a href="#BigDecimal" class="headerlink" title="BigDecimal"></a>BigDecimal</h2><ul>
+<li><p>表示一个任意大小且精度完全准确的浮点数。</p>
+</li>
+<li><p>小数位数：获得小数位数 scale()，设置小数位数 setScale()。</p>
+</li>
+<li><p>去掉末尾的0：stripTrailingZeros()。</p>
+</li>
+<li><p>等值比较：compareTo()。不能使用equals，因为它要求两个值相等，且小数位数相等。</p>
+</li>
+</ul>
+<h2 id="Character"><a href="#Character" class="headerlink" title="Character"></a>Character</h2><ul>
+<li><p>基本类型 char 的包装类 Character。</p>
+</li>
+<li><p>支持自动装箱和自动拆箱。</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Character ch=&apos;a&apos;;	//自动装箱</span><br><span class="line">char c=ch;	//自动拆箱</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>常用方法</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ch.isLetter();</span><br><span class="line">ch.isDigit();</span><br><span class="line">ch.isWhitespace();</span><br><span class="line">ch.isUpperCase();</span><br><span class="line">ch.isLowerCase();</span><br><span class="line">ch.toUpperCase();</span><br><span class="line">ch.toLowerCase();</span><br><span class="line">ch.toString();</span><br></pre></td></tr></table></figure>
+
+<h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><h3 id="字符串特性"><a href="#字符串特性" class="headerlink" title="字符串特性"></a>字符串特性</h3><p>String 是一个引用类型，本身也是一个类。</p>
+<p>String 内部使用一个 char[] 数组表示。</p>
+<p>字符串不可变：内部使用 private final char[] 存储字符串。</p>
+<p>字符串比较：必须使用 equals()。因为字符串的不可变性，”hi”和”HI”.toLowerCase()不相等。</p>
+<h3 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h3><p>比较，获得长度，提取子串，查找，替换，大小写转换，连接字符串</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">//获取字符串信息</span><br><span class="line">s.CharAt(i);</span><br><span class="line">s.indexOf(ch);</span><br><span class="line">s.length();</span><br><span class="line">s.startsWith(s2);</span><br><span class="line">s.endsWith(s2);</span><br><span class="line"></span><br><span class="line">//字符串比较</span><br><span class="line">s.compareTo(s2);</span><br><span class="line">s.equals(s2);</span><br><span class="line">s.matches(s2);</span><br><span class="line"></span><br><span class="line">//字符串转换</span><br><span class="line">s.concat(s2);</span><br><span class="line">s.getBytes();</span><br><span class="line">s.replace(oldChar,newChar);</span><br><span class="line">s.split(s2);</span><br><span class="line">s.toUpperCase();</span><br><span class="line">s.trim();</span><br></pre></td></tr></table></figure>
+
+<h3 id="字符编码"><a href="#字符编码" class="headerlink" title="字符编码"></a>字符编码</h3><ul>
+<li>ASCII码：1个字节，包含英文字母，数字和常用符号。</li>
+<li>GB2312：2个字节，第1个字节的最高位始终为1，用于区分ASCII 码。包含中文。</li>
+<li>Unicode：2个字节，包含世界上的常用语言。</li>
+<li>UTF-8：1-4 字节变长编码，依靠高位字节确定一个字符的长度，某处字符出错不影响后序字符，容错能力强，常用作传输编码。</li>
+</ul>
+<h2 id="StringBuffer-amp-StringBuilder"><a href="#StringBuffer-amp-StringBuilder" class="headerlink" title="StringBuffer &amp; StringBuilder"></a>StringBuffer &amp; StringBuilder</h2><p>字符串拼接的时候，每次都会创建新的字符串对象，删除旧的字符串，导致大部分字符串都是临时对象，占用时间和空间。</p>
+<p>StringBuilder 和 StringBuffer 都是一个可变对象，可以预分配缓冲区，拼接字符串时，不会创建新的临时对象，提高了效率。</p>
+<p>StringBuilder 和 StringBuffer 可以进行链式操作，每一次操作都返回实例本身。</p>
+<p>StringBuffer 是线程安全的。在应用程序有此要求的情况下必须使用 StringBuffer。StringBuilder 不是线程安全的，但效率更高。</p>
+<h3 id="JavaBean"><a href="#JavaBean" class="headerlink" title="JavaBean"></a>JavaBean</h3><p>一种符合命名规范的类，通过getter和setter来定义属性。</p>
+<ul>
+<li>private实例字段：private Type value;</li>
+<li>public方法读写实例字段，且读写方法符合以下命名规范：<ul>
+<li>public Type getValue(){}; public boolean isValue(){};</li>
+<li>public void setValue(Type value){};</li>
+</ul>
+</li>
+</ul>
+<h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h3><ul>
+<li><p>通常把一组对应的读方法和写方法称为属性。属性只需要定义读和写方法，不一定需要对应的字段。</p>
+<ul>
+<li>只读属性：只有读方法</li>
+<li>只写属性：只有写方法</li>
+</ul>
+</li>
+<li><p>可以利用IDE快速生成getter和setter。</p>
+</li>
+<li><p>可以使用Introspector.getBeanInfo()获取属性列表。</p>
+</li>
+</ul>
+<h2 id="enum"><a href="#enum" class="headerlink" title="enum"></a>enum</h2><p>定义常量，并让编译器能够自动检查某个值在枚举的集合内。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">enum Weekday&#123;</span><br><span class="line">	SUN,MON,TUE,WED,THU,FRI,SAT;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="编译器检查"><a href="#编译器检查" class="headerlink" title="编译器检查"></a>编译器检查</h3><ul>
+<li><p>enum常量自带类型信息，编译器会检查互相比较或者赋值的类型是否相同，如果不同则编译错误。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int day=1;</span><br><span class="line">if(day==Weekday.SUN)&#123;&#125;	//编译错误，类型错误</span><br><span class="line">Weekday y=Color.RED;	//编译错误，类型错误</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>检查是否引用到非枚举的值，如果有则编译错误。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if(Weekday.ONE)	//编译错误，枚举值不存在</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="enum比较"><a href="#enum比较" class="headerlink" title="enum比较"></a>enum比较</h3><p>enum类型的每个常量在JVM中只有一个唯一实例，可以直接用==比较。</p>
+<h3 id="enum类型特点"><a href="#enum类型特点" class="headerlink" title="enum类型特点"></a>enum类型特点</h3><ul>
+<li>定义的enum类型总是继承自java.lang.Enum，且无法被继承。</li>
+<li>只能定义处enum的实例，无法通过new操作符创建enum实例。</li>
+<li>定义的每个实例都是引用类型的唯一实例。</li>
+<li>可以将enum类型用于switch语句。</li>
+<li>可以定义枚举类型的字段，输出更多信息。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">public class Main &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Weekday day = Weekday.SUN;</span><br><span class="line">        if (day.dayValue == 6 || day.dayValue == 0) &#123;</span><br><span class="line">            System.out.println(&quot;Today is &quot; + day + &quot;. Work at home!&quot;);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            System.out.println(&quot;Today is &quot; + day + &quot;. Work at office!&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">enum Weekday &#123;</span><br><span class="line">    MON(1, &quot;星期一&quot;), TUE(2, &quot;星期二&quot;), WED(3, &quot;星期三&quot;), THU(4, &quot;星期四&quot;), FRI(5, &quot;星期五&quot;), SAT(6, &quot;星期六&quot;), SUN(0, &quot;星期日&quot;);</span><br><span class="line"></span><br><span class="line">    public final int dayValue;</span><br><span class="line">    private final String chinese;</span><br><span class="line"></span><br><span class="line">    private Weekday(int dayValue, String chinese) &#123;</span><br><span class="line">        this.dayValue = dayValue;</span><br><span class="line">        this.chinese = chinese;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String toString() &#123;</span><br><span class="line">        return this.chinese;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="enum常用方法"><a href="#enum常用方法" class="headerlink" title="enum常用方法"></a>enum常用方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String s=Weekday.SUN.name();	//获得枚举量的名称一定要用name而不是toString</span><br><span class="line">int n=Weekday.MON.ordinal();	//获得枚举量的编号</span><br><span class="line">String ss=Weekday.MON.toString();	//重写使得输出更具有可读性</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/Java/" rel="tag"># Java</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2019/10/29/Java-oop/" rel="next" title="Java 面向对象编程">
+                  <i class="fa fa-chevron-left"></i> Java 面向对象编程
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java-常用类"><span class="nav-number">1.</span> <span class="nav-text">Java 常用类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#装箱-amp-拆箱"><span class="nav-number">1.1.</span> <span class="nav-text">装箱 &amp; 拆箱</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Number"><span class="nav-number">1.2.</span> <span class="nav-text">Number</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BigInteger"><span class="nav-number">1.3.</span> <span class="nav-text">BigInteger</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BigDecimal"><span class="nav-number">1.4.</span> <span class="nav-text">BigDecimal</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Character"><span class="nav-number">1.5.</span> <span class="nav-text">Character</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#String"><span class="nav-number">1.6.</span> <span class="nav-text">String</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串特性"><span class="nav-number">1.6.1.</span> <span class="nav-text">字符串特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用操作"><span class="nav-number">1.6.2.</span> <span class="nav-text">常用操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符编码"><span class="nav-number">1.6.3.</span> <span class="nav-text">字符编码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#StringBuffer-amp-StringBuilder"><span class="nav-number">1.7.</span> <span class="nav-text">StringBuffer &amp; StringBuilder</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaBean"><span class="nav-number">1.7.1.</span> <span class="nav-text">JavaBean</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#属性"><span class="nav-number">1.7.2.</span> <span class="nav-text">属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#enum"><span class="nav-number">1.8.</span> <span class="nav-text">enum</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#编译器检查"><span class="nav-number">1.8.1.</span> <span class="nav-text">编译器检查</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#enum比较"><span class="nav-number">1.8.2.</span> <span class="nav-text">enum比较</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#enum类型特点"><span class="nav-number">1.8.3.</span> <span class="nav-text">enum类型特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#enum常用方法"><span class="nav-number">1.8.4.</span> <span class="nav-text">enum常用方法</span></a></li></ol></li></ol></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/avatar.png"
+      alt="Yanhui Wang">
+  <p class="site-author-name" itemprop="name">Yanhui Wang</p>
+  <div class="site-description" itemprop="description">Young and brilliant.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives">
+        
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">categories</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+        </a>
+      </div>
+    
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/yanhuiw" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;yanhuiw" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:imyanhuiwang@gmail.com" title="E-Mail &amp;rarr; mailto:imyanhuiwang@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yanhui Wang</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.1
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.1"></script><script src="/js/motion.js?v=7.4.1"></script>
+<script src="/js/schemes/pisces.js?v=7.4.1"></script>
+
+<script src="/js/next-boot.js?v=7.4.1"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
